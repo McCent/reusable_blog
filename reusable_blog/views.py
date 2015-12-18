@@ -8,18 +8,18 @@ from django.shortcuts import redirect
 def post_list(request):
 
     posts  = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, "blog/blogtests.html", {'posts': posts})
+    return render(request, "reusable_blog/blogtests.html", {'posts': posts})
 
 def post_detail(request, id):
     post = get_object_or_404(Post, pk=id)
     post.views += 1 # clock up the number of post views
     post.save()
-    return render(request, "blog/postdetail.html",{'post':post})
+    return render(request, "reusable_blog/postdetail.html",{'post':post})
 
 def pop_post(request):
 
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')[:5]
-    return render(request, "blog/blogtests.html", {'posts': posts})
+    return render(request, "reusable_blog/blogtests.html", {'posts': posts})
 
 def new_post(request):
     if request.method == "POST":
@@ -29,10 +29,10 @@ def new_post(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('blog.views.post_detail', id=post.pk)
+            return redirect('reusable_blog.views.post_detail', id=post.pk)
     else:
         form = BlogPostForm()
-    return render(request, 'blog/blogpostform.html', {'form':form})
+    return render(request, 'reusable_blog/blogpostform.html', {'form':form})
 """
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
