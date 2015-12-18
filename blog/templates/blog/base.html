@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stack - Bootcamp Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/blog.css" %}">
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/blog">stack/Home</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/blog/pop">Popular Posts</a> </li>
+            <!-- <li><a href="{% url 'post_list' %}? top=True">Top Posts</a></li> -->
+            <li><a href="/admin">Admin</a> </li>
+        </ul>
+    </nav>
+
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <h1> stack
+                <p id="logo" class="lead">The Trials of a Bootcamp Developer</p>
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <!-- blog entries -->
+                    {% block content %}
+                    {% endblock %}
+                    <!-- blog entries -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="container">
+    </div>
+</footer>
+<!-- script references -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+
+</body>
+</html>
